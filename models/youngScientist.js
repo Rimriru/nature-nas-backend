@@ -10,7 +10,7 @@ const youngScientistSchema = mongoose.Schema({
     type: String,
     required: [true, 'Требуется должность участника'],
   },
-  cellNumber: {
+  phoneNumber: {
     type: String,
   },
   email: {
@@ -27,7 +27,9 @@ const youngScientistSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    required: [true, 'Требуется описание участника'],
+  },
+  photo: {
+    type: String,
   },
 });
 

@@ -3,10 +3,11 @@ import express, { json } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import helmet from 'helmet';
+import multer from 'multer';
 import rateLimiter from './utils/rateLimiter.js';
 import routes from './routes/index.js';
 
-const { PORT = 4000, MONGODB_URL = 'mongodb://127.0.0.1:27017/naturenas' } = process.env;
+const { PORT, MONGODB_URL } = process.env;
 
 const app = express();
 
@@ -20,6 +21,17 @@ app.use(cors()); // добавить настройки
 app.use(json());
 app.use(rateLimiter);
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '/uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage });
+
+app.use(upload.single('photo'));
 app.use('/', routes);
 
 app.listen(PORT, () => {

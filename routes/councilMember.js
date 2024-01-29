@@ -4,7 +4,7 @@ import {
   addCouncilMember,
   editCouncilMember,
   removeCouncilMember,
-} from '../contolllers/councilMember.js';
+} from '../controllers/councilMember.js';
 import { councilMemberDataValidation, councilMemberIdValidation } from '../utils/validation/councilMemberValidationRules.js';
 
 const router = express.Router();
